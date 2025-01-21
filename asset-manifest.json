@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/email-signature-editor/static/css/main.e6c13ad2.css",
-    "main.js": "/email-signature-editor/static/js/main.5e2d6afd.js",
+    "main.js": "/email-signature-editor/static/js/main.9f8a671c.js",
     "static/js/488.ad428176.chunk.js": "/email-signature-editor/static/js/488.ad428176.chunk.js",
     "index.html": "/email-signature-editor/index.html",
     "main.e6c13ad2.css.map": "/email-signature-editor/static/css/main.e6c13ad2.css.map",
-    "main.5e2d6afd.js.map": "/email-signature-editor/static/js/main.5e2d6afd.js.map",
+    "main.9f8a671c.js.map": "/email-signature-editor/static/js/main.9f8a671c.js.map",
     "488.ad428176.chunk.js.map": "/email-signature-editor/static/js/488.ad428176.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.5e2d6afd.js"
+    "static/js/main.9f8a671c.js"
   ]
 }
