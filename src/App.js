@@ -27,7 +27,7 @@ const App = () => {
     linkedin: "https://www.linkedin.com/company/itrucking-services-inc/",
     facebook: "https://www.facebook.com/itruckingservicesinc/",
     instagram: "https://instagram.com/itrucking.inc/",
-    image: "https://app.customesignature.com/upload/signature/complete/696/696.gif",
+    image: "https://drive.google.com/file/d/10xb1HryL57XOvnoYt_vGL25v2c4NOrLR/view?usp=sharing", //"https://app.customesignature.com/upload/signature/complete/696/696.gif",
     customBtnLink: "https://itruckingservices.org/index.php?page=home#calendar",
     buttonText: "Search Trucks",
     companyName: "iTrucking Services Inc",
@@ -91,10 +91,10 @@ const App = () => {
                         <tr>
                           <td valign="middle" align="center" style="padding:0 15px 0 0; border-collapse:collapse;">
                             <a href="https://www.itruckingservices.org/" id="layout_link">
-                              <img class="layout_logo" src="${image}" width="150">
+                              <img class="layout_logo" src="${convertGoogleDriveLink(image)}" width="150">
                             </a>
                           </td>
-                          <td valign="top" align="left" class="layout_divider" style="border:none; border-left-width:0px; border-left-color:#ffffff; border-left-style: solid; padding:0 0 0 15px; border-collapse:collapse;">
+                          <td valign="top" align="left" class="layout_divider" style="border-left-width:1px; border-left-color:#000000; border-left-style: solid; padding:0 0 0 15px; border-collapse:collapse;">
                             <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
                               <tbody>
                                 ${name ? `
