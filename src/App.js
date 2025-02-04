@@ -119,6 +119,16 @@ const App = () => {
                 </td>
               </tr>
               ` : ""}
+              ${fax ? `
+              <tr height="25" style="vertical-align: middle;">
+                <td width="30" style="vertical-align: middle;">
+                  <img src="https://img.icons8.com/?size=100&id=108686&format=png&color=f76363" alt="fax" width="13" style="display: block; background-color: transparent;"></img>
+                </td>
+                <td style="padding: 0px; color: rgb(0, 0, 0);">
+                  <a href="tel:${fax}" style="text-decoration: unset; color: rgb(0, 0, 0); font-size: 14px;">${fax}</a>
+                </td>
+              </tr>
+              ` : ""}
               ${email ? `
               <tr height="25" style="vertical-align: middle;">
                 <td width="30">
