@@ -19,20 +19,19 @@ const App = () => {
   };
 
   const [formData, setFormData] = useState({
-    name: "Victor Cebotari",
-    department: "Management Department",
-    phone: "(916) 836-8386 x101",
-    fax: "(916) 836-8378",
-    email: "victor@itrucking.org",
-    website: "www.itruckingservices.org",
-    mc: "958715",
-    title: "",
+    name: "Oleg Bogdan",
+    department: "Fuel Management",
+    phone: "(916) 269-4606",
+    email: "oleg.bogdan@itrucking.org",
+    website: "https://itruckingservices.org",
     linkedin: "https://www.linkedin.com/company/itrucking-services-inc/",
     facebook: "https://www.facebook.com/itruckingservicesinc/",
     instagram: "https://instagram.com/itrucking.inc/",
-    image: "https://lh3.googleusercontent.com/d/10xb1HryL57XOvnoYt_vGL25v2c4NOrLR",
-    buttonLink: "https://itruckingservices.org/index.php?page=home#calendar",
-    buttonText: "Truck List",
+    image: "https://app.customesignature.com/upload/signature/complete/696/696.gif",
+    customBtnLink: "https://itruckingservices.org/index.php?page=home#calendar",
+    buttonText: "Search Trucks",
+    companyName: "iTrucking Services Inc",
+    extension: "202",
   });
 
   const downloadFile = (content, fileName, contentType) => {
@@ -66,168 +65,102 @@ const App = () => {
       name,
       department,
       phone,
-      fax,
       email,
       website,
-      mc,
       linkedin,
       facebook,
       instagram,
       image,
-      buttonLink,
+      customBtnLink,
       buttonText,
-      title,
+      companyName,
+      extension
     } = formData;
 
-
-  return `
-  <table cellpadding="0" cellspacing="0" border="0" style="vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Tahoma; max-width: 450px;">
-    <tbody>
-      <tr>
-        <td>
-          <table cellpadding="0" cellspacing="0" border="0" style="vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Tahoma;">
-            <tbody>
-              <tr>
-                <td style="vertical-align: middle;">
-                  <h2 style="margin: 0px; font-size: 18px; color: rgb(0, 0, 0); font-weight: 600;">
-                    ${name || ""}
-                  </h2>
-                  <p style="margin: 0px; color: rgb(0, 0, 0); font-size: 14px; line-height: 22px;">
-                    ${title || ""}
-                  </p>
-                  <p style="margin: 0px; font-weight: 500; color: rgb(0, 0, 0); font-size: 14px; line-height: 22px;">
-                    ${department || ""}
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-        <td width="30"><div style="width: 30px;"></div></td>
-        <td width="1" style="width: 1px; height: auto; border-bottom: none; border-left: 1px solid rgb(247, 99, 99);"></td>
-        <td width="30"><div style="width: 30px;"></div></td>
-        <td style="vertical-align: middle;">
-          <table cellpadding="0" cellspacing="0" border="0" style="vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Tahoma;">
-            <tbody>
-              ${phone ? `
-              <tr height="25" style="vertical-align: middle;">
-                <td width="30" style="vertical-align: middle;">
-                  <img src="https://img.icons8.com/?size=100&id=85059&format=png&color=f76363" alt="mobilePhone" width="13" style="display: block; background-color: transparent;"></img>
-                </td>
-                <td style="padding: 0px; color: rgb(0, 0, 0);">
-                  <a href="tel:${phone}" style="text-decoration: unset; color: rgb(0, 0, 0); font-size: 14px;">${phone}</a>
-                </td>
-              </tr>
-              ` : ""}
-              ${fax ? `
-              <tr height="25" style="vertical-align: middle;">
-                <td width="30" style="vertical-align: middle;">
-                  <img src="https://img.icons8.com/?size=100&id=108686&format=png&color=f76363" alt="fax" width="13" style="display: block; background-color: transparent;"></img>
-                </td>
-                <td style="padding: 0px; color: rgb(0, 0, 0);">
-                  <a href="tel:${fax}" style="text-decoration: unset; color: rgb(0, 0, 0); font-size: 14px;">${fax}</a>
-                </td>
-              </tr>
-              ` : ""}
-              ${email ? `
-              <tr height="25" style="vertical-align: middle;">
-                <td width="30">
-                  <img src="https://img.icons8.com/?size=100&id=93465&format=png&color=f76363" alt="emailAddress" width="13" style="display: block; background-color: transparent;"></img>
-                </td>
-                <td>
-                  <a href="mailto:${email}" style="text-decoration: unset; color: rgb(0, 0, 0); font-size: 14px;">${email}</a>
-                </td>
-              </tr>
-              ` : ""}
-              ${website ? `
-              <tr height="25" style="vertical-align: middle;">
-                <td width="30">
-                  <img src="https://img.icons8.com/?size=100&id=85777&format=png&color=f76363" alt="website" width="13" style="display: block; background-color: transparent; transform: rotate(90deg);"></img>
-                </td>
-                <td>
-                  <a href="${website}" style="text-decoration: unset; color: rgb(0, 0, 0); font-size: 14px;">${website}</a>
-                </td>
-              </tr>
-              ` : ""}
-              ${mc ? `
-              <tr height="25" style="vertical-align: middle;">
-                <td width="30">
-                  <img src="https://img.icons8.com/?size=100&id=85049&format=png&color=f76363" alt="address" width="13" style="display: block; background-color: transparent;"></img>
-                </td>
-                <td>
-                  <span style="font-size: 14px; color: rgb(0, 0, 0);">${mc}</span>
-                </td>
-              </tr>
-              ` : ""}
-            </tbody>
-          </table>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <table cellpadding="0" cellspacing="0" border="0" style="vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Tahoma; width: 100%; max-width:450px;">
-    <tbody>
-      <tr><td height="30"></td></tr>
-      <tr>
-        <td width="auto" style="width: 100%; height: 1px; border-bottom: 1px solid rgb(247, 99, 99); border-left: none; display: block;"></td>
-      </tr>
-      <tr><td height="15"></td></tr>
-    </tbody>
-  </table>
-  <table cellpadding="0" cellspacing="0" border="0" style="vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Tahoma; width: 100%; max-width:450px;">
-    <tbody>
-      <tr>
-        <td style="vertical-align: top;">
-          ${image ? `<img src="${image}" role="presentation" width="130" style="max-width: 130px; display: inline-block;">` : ""}
-        </td>
-        <td style="text-align: right; vertical-align: middle;">
-          <table cellpadding="0" cellspacing="0" border="0" style="vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Tahoma; display: inline-block; max-width:450px;">
-            <tbody>
-              <tr style="text-align: right;">
-                ${buttonLink && buttonText ? `
-                <td style="padding-top: 0; text-align: left;">
-                  <a href="${buttonLink}" target="_blank" style="display: inline-block; border: 2px solid rgb(247, 99, 99); margin-right: 68px; padding: 5px 10px; text-decoration: unset; color: rgb(247, 99, 99); font-weight: bold; border-radius: 5px;">
-                    ${buttonText}
-                  </a>
-                </td>
-              ` : ""}
-                ${facebook ? `
-                <td>
-                  <a href="${facebook}" style="display: inline-block; padding: 0px; text-decoration:unset;border:none;">
-                    <img src="https://img.icons8.com/?size=100&id=84872&format=png&color=bf4d4d" alt="facebook" width="24" style="max-width: 135px; display: block; background-color: transparent ;border-radius:50%;"></img>
-                  </a>
-                </td>
-                <td width="5"></td>
-                ` : ""}
-                ${linkedin ? `
-                <td>
-                  <a href="${linkedin}" style="display: inline-block; padding: 0px; text-decoration:unset; border:none;">
-                    <img src="https://img.icons8.com/?size=100&id=84888&format=png&color=bf4d4d" alt="linkedin" width="24" style="max-width: 135px; display: block; background-color: transparent; border-radius:50%;"></img>
-                  </a>
-                </td>
-                <td width="5"></td>
-                ` : ""}
-                ${instagram ? `
-                <td>
-                  <a href="${instagram}" style="display: inline-block; padding: 0px; text-decoration:unset !important;border:none;">
-                    <img src="https://img.icons8.com/?size=100&id=84884&format=png&color=bf4d4d" alt="instagram" width="24" style="max-width: 135px; display: block; background-color: transparent; border-radius:50%;"></img>
-                  </a>
-                </td>
-                <td width="5"></td>
-                ` : ""}
-
-                <td width="5"></td>
-              </tr>
-
-            </tbody>
-          </table>
-        </td>
-
-      </tr>
-
-    </tbody>
-  </table>
-  <tr><td height="30"></td></tr>`};
+    return `
+    <table class="signature_tbl" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-size:10px;font-family:Inter,sans-serif;">
+      <tbody>
+        <tr>
+          <td class="layout_maintd" style="line-height:14px;font-family:Inter, sans-serif; border-collapse:collapse;">
+            <table cellpadding="0" cellspacing="0" style="border-collapse: separate">
+              <tbody>
+                <tr>
+                  <td valign="top" align="left" class="layout_border" style="border-collapse:collapse; padding:0px; border-radius:5px; border-width: 0px; border-color:#ffffff; border-style: solid;">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tbody>
+                        <tr>
+                          <td valign="middle" align="center" style="padding:0 15px 0 0; border-collapse:collapse;">
+                            <a href="https://www.itruckingservices.org/" id="layout_link">
+                              <img class="layout_logo" src="${image}" width="150">
+                            </a>
+                          </td>
+                          <td valign="top" align="left" class="layout_divider" style="border:none; border-left-width:0px; border-left-color:#ffffff; border-left-style: solid; padding:0 0 0 15px; border-collapse:collapse;">
+                            <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                              <tbody>
+                                ${name ? `
+                                  <tr>
+                                    <td style="padding-bottom:10px;">
+                                      <table border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                          <tr>
+                                            <td style="padding:15px 0 0 0; border-collapse: collapse;">
+                                              <table border="0" cellspacing="0" cellpadding="0">
+                                                <tbody>
+                                                  <tr>
+                                                    <td align="left" valign="middle">
+                                                      <span class="layout_firstname" style="font-weight:bold; font-style:normal; color:#000000; font-size:18px; white-space: nowrap;">
+                                                        ${name}
+                                                      </span>
+                                                    </td>
+                                                    <td align="left" valign="middle" style="padding-left:5px;"><img class="layout_verified" width="15" height="15" src="https://app.customesignature.com/images/verify.gif" style="display:block;"></td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                          </tr>
+                                          ${department ? `<tr><td><span class="layout_jobtitle" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px;">${department}</span></td></tr>` : ''}
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                ` : ''}
+                                ${companyName ? `<tr><td><span class="layout_company" style="font-weight:bold; font-style:normal; color:#000000; font-size:14px;">${companyName}</span></td></tr>` : ''}
+                                ${phone ? `<tr><td><a href="tel:${phone}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:none;">${phone}</a></td></tr>` : ''}
+                                ${extension ? `<tr><td><span style="font-weight:bold; font-style:normal; color:#000000; font-size:12px;">Ext:</span> <a href="tel:${extension}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:none;">${extension}</a></td></tr>` : ''}
+                                ${email ? `<tr><td><a href="mailto:${email}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:none;">${email}</a></td></tr>` : ''}
+                                <tr>
+                                  <td style="padding:10px 0 0 0; border-collapse:collapse;">
+                                    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                                      <tbody>
+                                        <tr>
+                                          ${website ? `<td style="padding:0 4px 0 0" class="layout-web-icon sicon"><a href="${website}" target="_blank"><img alt="" src="https://app.customesignature.com/images/social/animation/2/web-icon.gif" width="22" style="display:block;"></a></td>` : ''}
+                                          ${instagram ? `<td style="padding:0 4px 0 0" class="layout-insta-icon sicon"><a href="${instagram}" target="_blank"><img alt="" src="https://app.customesignature.com/images/social/animation/2/insta-icon.gif" width="22" style="display:block;"></a></td>` : ''}
+                                          ${linkedin ? `<td style="padding:0 4px 0 0" class="layout-linkedin-icon sicon"><a href="${linkedin}" target="_blank"><img alt="" src="https://app.customesignature.com/images/social/animation/2/linkedin-icon.gif" width="22" style="display:block;"></a></td>` : ''}
+                                          ${facebook ? `<td style="padding:0 4px 0 0" class="layout-facebook-icon sicon"><a href="${facebook}" target="_blank"><img alt="" src="https://app.customesignature.com/images/social/animation/2/facebook-icon.gif" width="22" style="display:block;"></a></td>` : ''}
+                                          ${customBtnLink && buttonText ? `<td class="layout-custombtn imagetopngClass" data-image-name="custombtn"><a href="${customBtnLink}" style="text-decoration:unset;">
+                          <div style="width:113px;height:22px;background-color:black;color:white; text-align: center; font-size:13px; vertical-align:middle;">
+<span style="font-weight:bold;line-height:22px">${buttonText}</span></div>
+                          </a></td>` : ''}
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  ` };
 
   if (!isAuthenticated) {
     return (
