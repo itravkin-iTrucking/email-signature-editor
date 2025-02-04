@@ -32,6 +32,7 @@ const App = () => {
     buttonText: "Search Trucks",
     companyName: "iTrucking Services Inc",
     extension: "202",
+    logoSize: 150
   });
 
   const downloadFile = (content, fileName, contentType) => {
@@ -74,7 +75,8 @@ const App = () => {
       customBtnLink,
       buttonText,
       companyName,
-      extension
+      extension,
+      logoSize
     } = formData;
 
     return `
@@ -91,7 +93,7 @@ const App = () => {
                         <tr>
                           <td valign="middle" align="center" style="padding:0 15px 0 0; border-collapse:collapse;">
                             <a href="https://www.itruckingservices.org/" id="layout_link">
-                              <img class="layout_logo" src="${convertGoogleDriveLink(image)}" width="150">
+                              <img class="layout_logo" src="${convertGoogleDriveLink(image)}" width="${logoSize}">
                             </a>
                           </td>
                           <td valign="top" align="left" class="layout_divider" style="border-left-width:1px; border-left-color:#000000; border-left-style: solid; padding:0 0 0 15px; border-collapse:collapse;">
