@@ -125,9 +125,9 @@ const App = () => {
                                   </tr>
                                 ` : ''}
                                 ${companyName ? `<tr><td><span class="layout_company" style="font-weight:bold; font-style:normal; color:#000000; font-size:14px;">${companyName}</span></td></tr>` : ''}
-                                ${phone ? `<tr><td><a href="tel:${phone}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:none;">${phone}</a></td></tr>` : ''}
-                                ${extension ? `<tr><td><span style="font-weight:bold; font-style:normal; color:#000000; font-size:12px;">Ext:</span> <a href="tel:${extension}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:none;">${extension}</a></td></tr>` : ''}
-                                ${email ? `<tr><td><a href="mailto:${email}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:none;">${email}</a></td></tr>` : ''}
+                                ${phone ? `<tr><td><a href="tel:${phone}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:unset;">${phone}</a></td></tr>` : ''}
+                                ${extension ? `<tr><td><span style="font-weight:bold; font-style:normal; color:#000000; font-size:12px;">Ext:</span> <a href="tel:${extension}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:unset;">${extension}</a></td></tr>` : ''}
+                                ${email ? `<tr><td><a href="mailto:${email}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:unset;">${email}</a></td></tr>` : ''}
                                 <tr>
                                   <td style="padding:10px 0 0 0; border-collapse:collapse;">
                                     <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
