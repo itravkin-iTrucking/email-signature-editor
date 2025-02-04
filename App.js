@@ -33,9 +33,7 @@ const App = () => {
           style={{
             width: "100%",
             height: "200px",
-            padding: "10px",
-            fontFamily: "Courier New, monospace",
-            fontSize: "14px",
+            padding: "10px", fontFamily: "Courier New, monospace", fontSize: "14px",
           }}
           value={editorValue}
           onChange={(e) => setEditorValue(e.target.value)}

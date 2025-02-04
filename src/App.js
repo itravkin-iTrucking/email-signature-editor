@@ -1,7 +1,23 @@
-
 import React, { useState } from "react";
 
 const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [passwordInput, setPasswordInput] = useState("");
+  const [error, setError] = useState("");
+
+  const PASSWORD = "958715"; // Hardcoded password
+
+  // Handle login
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (passwordInput === PASSWORD) {
+      setIsAuthenticated(true);
+      setError("");
+    } else {
+      setError("Incorrect password. Please try again.");
+    }
+  };
+
   const [formData, setFormData] = useState({
     name: "Victor Cebotari",
     department: "Management Department",
@@ -10,14 +26,15 @@ const App = () => {
     email: "victor@itrucking.org",
     website: "www.itruckingservices.org",
     mc: "958715",
+    title: "",
     linkedin: "https://www.linkedin.com/company/itrucking-services-inc/",
     facebook: "https://www.facebook.com/itruckingservicesinc/",
     instagram: "https://instagram.com/itrucking.inc/",
     image: "https://lh3.googleusercontent.com/d/10xb1HryL57XOvnoYt_vGL25v2c4NOrLR",
-    truckListLink: "https://itruckingservices.org/index.php?page=home#calendar",
+    buttonLink: "https://itruckingservices.org/index.php?page=home#calendar",
+    buttonText: "Truck List",
   });
 
-  // Function to trigger file download
   const downloadFile = (content, fileName, contentType) => {
     const blob = new Blob([content], { type: contentType });
     const link = document.createElement("a");
@@ -26,7 +43,16 @@ const App = () => {
     link.click();
   };
 
-  // Update form values
+  const convertGoogleDriveLink = (link) => {
+    const match = link.match(/\/d\/(.*?)\/view/);
+    if (match && match[1]) {
+      return `https://lh3.googleusercontent.com/d/${match[1]}`;
+    } else {
+      console.error("Invalid Google Drive link format.");
+      return link;
+    }
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -35,7 +61,6 @@ const App = () => {
     }));
   };
 
-  // Render the email signature with updated values
   const renderSignature = () => {
     const {
       name,
@@ -49,90 +74,198 @@ const App = () => {
       facebook,
       instagram,
       image,
-      truckListLink,
+      buttonLink,
+      buttonText,
+      title,
     } = formData;
 
-    return `
-      <style>a{text-decoration:none;}</style>
-      <div style="max-width:400px;margin-left:20px;font-size:14px;font-family: 'Montserrat', sans-serif;">
-        ${name ? `<div style="color:#132033; font-weight: bold;">${name}</div>` : ""}
-        ${department ? `<div style="color:#5b5c70; font-weight: 500;">${department}</div>` : ""}
-        ${(name || department) ? `<hr style="background:#132033; height:1px; margin-top:2px; max-width:400px;margin-left:0;">` : ""}
-        
-        ${phone ? `
-          <div>
-            <span style="vertical-align:middle; text-align:center;">
-              <img src="https://cdn1.iconfinder.com/data/icons/material-communication/18/phone-16.png" alt="">
-            </span>
-            <span style="margin-left:10px;">
-              <a href="tel:${phone}" style="text-decoration:unset;color:#5b5c70;">${phone}</a>
-            </span>
-          </div>` : ""}
-        
-        ${fax ? `
-          <div>
-            <span style="vertical-align:middle; text-align:center;">
-              <img src="https://cdn4.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/print.png" alt="">
-            </span>
-            <span style="margin-left:10px;">
-              <a href="tel:${fax}" style="text-decoration:unset;color:#5b5c70;">${fax}</a>
-            </span>
-          </div>` : ""}
-        
-        ${email ? `
-          <div>
-            <span style="vertical-align:middle; text-align:center;">
-              <img src="https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519948-008_Mail-16.png" alt="">
-            </span>
-            <span style="margin-left:10px;">
-              <a href="mailto:${email}" style="text-decoration:unset;color:#5b5c70;">${email}</a>
-            </span>
-          </div>` : ""}
-        
-        ${website ? `
-          <div>
-            <span style="vertical-align:middle; text-align:center;">
-              <img src="https://cdn3.iconfinder.com/data/icons/wpzoom-developer-icon-set/500/59-16.png" alt="">
-            </span>
-            <span style="margin-left:10px;">
-              <a href="https://${website}" target="_blank" style="text-decoration:unset;color:#5b5c70;">${website}</a>
-            </span>
-          </div>` : ""}
-        
-        ${mc ? `
-          <div>
-            <span style="vertical-align:middle; text-align:center; font-weight: bold;">MC</span>
-            <span style="margin-left:10px;color:#5b5c70;margin-left:3px;">${mc}</span>
-          </div>` : ""}
-        
-        ${(name || department || phone || fax || email || website || mc) ? `<hr style="background:#132033; height:1px; max-width:400px;margin-left:0;">` : ""}
-        
-        <div style="max-width:400px">
-          ${image ? `<span><img src="${image}" alt="" style="height:60px;"></span>` : ""}
-          ${truckListLink ? `
-            <span style="margin-left:10px;margin-top:-2px;float:right;line-height: 80px;">
-              <a href="${truckListLink}" target="_blank" 
-                style="border:2px solid #132033; padding:5px 15px; border-radius: 5px;text-decoration:unset;color:#132033;font-weight: bold;">
-                Trucks list
-              </a>
-            </span>` : ""}
-          
-          ${(linkedin || facebook || instagram) ? `
-            <span style="float:right; vertical-align: middle; text-align:center; line-height: 80px;text-decoration:unset;">
-              ${linkedin ? `<a href="${linkedin}" target="_blank" style="text-decoration:unset;">
-                <img src="https://cdn3.iconfinder.com/data/icons/iconano-social/512/201-LinkedIn-16.png" alt="">
-              </a>` : ""}
-              ${facebook ? `<a href="${facebook}" target="_blank" style="text-decoration:unset;">
-                <img src="https://cdn3.iconfinder.com/data/icons/picons-social/57/06-facebook-16.png" alt="">
-              </a>` : ""}
-              ${instagram ? `<a href="${instagram}" target="_blank" style="text-decoration:unset;">
-                <img src="https://cdn3.iconfinder.com/data/icons/picons-social/57/38-instagram-16.png" alt="">
-              </a>` : ""}
-            </span>` : ""}
-        </div>
+
+  return `
+  <table cellpadding="0" cellspacing="0" border="0" style="vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Tahoma; max-width: 450px;">
+    <tbody>
+      <tr>
+        <td>
+          <table cellpadding="0" cellspacing="0" border="0" style="vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Tahoma;">
+            <tbody>
+              <tr>
+                <td style="vertical-align: middle;">
+                  <h2 style="margin: 0px; font-size: 18px; color: rgb(0, 0, 0); font-weight: 600;">
+                    ${name || ""}
+                  </h2>
+                  <p style="margin: 0px; color: rgb(0, 0, 0); font-size: 14px; line-height: 22px;">
+                    ${title || ""}
+                  </p>
+                  <p style="margin: 0px; font-weight: 500; color: rgb(0, 0, 0); font-size: 14px; line-height: 22px;">
+                    ${department || ""}
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td width="30"><div style="width: 30px;"></div></td>
+        <td width="1" style="width: 1px; height: auto; border-bottom: none; border-left: 1px solid rgb(247, 99, 99);"></td>
+        <td width="30"><div style="width: 30px;"></div></td>
+        <td style="vertical-align: middle;">
+          <table cellpadding="0" cellspacing="0" border="0" style="vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Tahoma;">
+            <tbody>
+              ${phone ? `
+              <tr height="25" style="vertical-align: middle;">
+                <td width="30" style="vertical-align: middle;">
+                  <img src="https://img.icons8.com/?size=100&id=85059&format=png&color=f76363" alt="mobilePhone" width="13" style="display: block; background-color: transparent;"></img>
+                </td>
+                <td style="padding: 0px; color: rgb(0, 0, 0);">
+                  <a href="tel:${phone}" style="text-decoration: unset; color: rgb(0, 0, 0); font-size: 14px;">${phone}</a>
+                </td>
+              </tr>
+              ` : ""}
+              ${email ? `
+              <tr height="25" style="vertical-align: middle;">
+                <td width="30">
+                  <img src="https://img.icons8.com/?size=100&id=93465&format=png&color=f76363" alt="emailAddress" width="13" style="display: block; background-color: transparent;"></img>
+                </td>
+                <td>
+                  <a href="mailto:${email}" style="text-decoration: unset; color: rgb(0, 0, 0); font-size: 14px;">${email}</a>
+                </td>
+              </tr>
+              ` : ""}
+              ${website ? `
+              <tr height="25" style="vertical-align: middle;">
+                <td width="30">
+                  <img src="https://img.icons8.com/?size=100&id=85777&format=png&color=f76363" alt="website" width="13" style="display: block; background-color: transparent; transform: rotate(90deg);"></img>
+                </td>
+                <td>
+                  <a href="${website}" style="text-decoration: unset; color: rgb(0, 0, 0); font-size: 14px;">${website}</a>
+                </td>
+              </tr>
+              ` : ""}
+              ${mc ? `
+              <tr height="25" style="vertical-align: middle;">
+                <td width="30">
+                  <img src="https://img.icons8.com/?size=100&id=85049&format=png&color=f76363" alt="address" width="13" style="display: block; background-color: transparent;"></img>
+                </td>
+                <td>
+                  <span style="font-size: 14px; color: rgb(0, 0, 0);">${mc}</span>
+                </td>
+              </tr>
+              ` : ""}
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" style="vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Tahoma; width: 100%; max-width:450px;">
+    <tbody>
+      <tr><td height="30"></td></tr>
+      <tr>
+        <td width="auto" style="width: 100%; height: 1px; border-bottom: 1px solid rgb(247, 99, 99); border-left: none; display: block;"></td>
+      </tr>
+      <tr><td height="15"></td></tr>
+    </tbody>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" style="vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Tahoma; width: 100%; max-width:450px;">
+    <tbody>
+      <tr>
+        <td style="vertical-align: top;">
+          ${image ? `<img src="${image}" role="presentation" width="130" style="max-width: 130px; display: inline-block;">` : ""}
+        </td>
+        <td style="text-align: right; vertical-align: middle;">
+          <table cellpadding="0" cellspacing="0" border="0" style="vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Tahoma; display: inline-block; max-width:450px;">
+            <tbody>
+              <tr style="text-align: right;">
+                ${facebook ? `
+                <td>
+                  <a href="${facebook}" style="display: inline-block; padding: 0px; text-decoration:unset;border:none;">
+                    <img src="https://img.icons8.com/?size=100&id=84872&format=png&color=bf4d4d" alt="facebook" width="24" style="max-width: 135px; display: block; background-color: transparent ;border-radius:50%;"></img>
+                  </a>
+                </td>
+                <td width="5"></td>
+                ` : ""}
+                ${linkedin ? `
+                <td>
+                  <a href="${linkedin}" style="display: inline-block; padding: 0px; text-decoration:unset; border:none;">
+                    <img src="https://img.icons8.com/?size=100&id=84888&format=png&color=bf4d4d" alt="linkedin" width="24" style="max-width: 135px; display: block; background-color: transparent; border-radius:50%;"></img>
+                  </a>
+                </td>
+                <td width="5"></td>
+                ` : ""}
+                ${instagram ? `
+                <td>
+                  <a href="${instagram}" style="display: inline-block; padding: 0px; text-decoration:unset !important;border:none;">
+                    <img src="https://img.icons8.com/?size=100&id=84884&format=png&color=bf4d4d" alt="instagram" width="24" style="max-width: 135px; display: block; background-color: transparent; border-radius:50%;"></img>
+                  </a>
+                </td>
+                <td width="5"></td>
+                ` : ""}
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <tr><td height="30"></td></tr>`};
+
+  if (!isAuthenticated) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          background: "#f4f4f4",
+        }}
+      >
+        <form
+          onSubmit={handleLogin}
+          style={{
+            padding: "20px",
+            background: "#fff",
+            borderRadius: "10px",
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Login</h2>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            value={passwordInput}
+            onChange={(e) => setPasswordInput(e.target.value)}
+            style={{
+              width: "90%",
+              padding: "10px",
+              marginBottom: "10px",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+              fontSize: "14px",
+            }}
+          />
+          {error && (
+            <p style={{ color: "red", fontSize: "12px", marginBottom: "10px" }}>
+              {error}
+            </p>
+          )}
+          <button
+            type="submit"
+            style={{
+              width: "100%",
+              padding: "10px",
+              backgroundColor: "#4CAF50",
+              color: "#fff",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              fontSize: "14px",
+            }}
+          >
+            Login
+          </button>
+        </form>
       </div>
-    `;
-  };
+    );
+  }
 
   return (
     <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
