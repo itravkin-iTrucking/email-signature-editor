@@ -174,6 +174,13 @@ const App = () => {
           <table cellpadding="0" cellspacing="0" border="0" style="vertical-align: -webkit-baseline-middle; font-size: medium; font-family: Tahoma; display: inline-block; max-width:450px;">
             <tbody>
               <tr style="text-align: right;">
+                ${buttonLink && buttonText ? `
+                <td style="padding-top: 0; text-align: left;">
+                  <a href="${buttonLink}" target="_blank" style="display: inline-block; border: 2px solid rgb(247, 99, 99); margin-right: 68px; padding: 5px 10px; text-decoration: unset; color: rgb(247, 99, 99); font-weight: bold; border-radius: 5px;">
+                    ${buttonText}
+                  </a>
+                </td>
+              ` : ""}
                 ${facebook ? `
                 <td>
                   <a href="${facebook}" style="display: inline-block; padding: 0px; text-decoration:unset;border:none;">
@@ -198,11 +205,16 @@ const App = () => {
                 </td>
                 <td width="5"></td>
                 ` : ""}
+
+                <td width="5"></td>
               </tr>
+
             </tbody>
           </table>
         </td>
+
       </tr>
+
     </tbody>
   </table>
   <tr><td height="30"></td></tr>`};
