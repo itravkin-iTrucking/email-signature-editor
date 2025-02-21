@@ -32,7 +32,7 @@ const App = () => {
     buttonText: "Search Trucks",
     companyName: "iTrucking Services Inc",
     extension: "202",
-    logoSize: 150
+    logoSize: 140
   });
 
   const downloadFile = (content, fileName, contentType) => {
@@ -48,7 +48,7 @@ const App = () => {
     if (match && match[1]) {
       return `https://lh3.googleusercontent.com/d/${match[1]}`;
     } else {
-      console.error("Invalid Google Drive link format.");
+      console.warn("Invalid Google Drive link format.");
       return link;
     }
   };
@@ -60,6 +60,18 @@ const App = () => {
       [name]: value,
     }));
   };
+
+  const logoVariants = {
+    "iTrucking_1": "https://drive.google.com/file/d/1CvZXw8bxKDV15nRmAfG7jmzdVhSi-tg6/view",
+    "iTrucking_2": "https://drive.google.com/file/d/17jJiiuNXiMza7AUlbRdtvhns3kpcqpxc/view?usp=sharing",
+    "iTrucking_services": "https://drive.google.com/file/d/1XNXuyIdG0OdqjM_wIwFl5RZM4Zu_lM_5/view?usp=sharing",
+    "iTrucking_round": "https://drive.google.com/file/d/12HZU6cvTdab38cstAxL8q0kltPkgVa1I/view?usp=sharing",
+    "iTrucking_round_2" : "https://drive.google.com/file/d/12Asd3UK009AgKT3O27PwJ3xHI7KAEMrf/view?usp=sharing"
+  }
+  /*      <option value="iTrucking_1"> iTrucking 1</option>
+          <option value="iTrucking_2"> iTrucking 2</option>
+          <option value="iTrucking_services"> iTrucking Services 1</option>
+          */
 
   const renderSignature = () => {
     const {
@@ -76,7 +88,8 @@ const App = () => {
       buttonText,
       companyName,
       extension,
-      logoSize
+      logoSize,
+      logoOption
     } = formData;
 
     return `
@@ -93,7 +106,7 @@ const App = () => {
                         <tr>
                           <td valign="middle" align="center" style="padding:0 15px 0 0; border-collapse:collapse;">
                             <a href="https://www.itruckingservices.org/" id="layout_link">
-                              <img class="layout_logo" src="${convertGoogleDriveLink(image)}" width="${logoSize}">
+                              <img class="layout_logo" src="${convertGoogleDriveLink(logoOption || image)}" width="${logoSize}">
                             </a>
                           </td>
                           <td valign="top" align="left" class="layout_divider" style="border-left-width:1px; border-left-color:#000000; border-left-style: solid; padding:0 0 0 15px; border-collapse:collapse;">
@@ -274,6 +287,40 @@ const App = () => {
             />
           </div>
         ))}
+        <div style={{
+          marginBottom: "15px",
+          display: "flex",
+          alignItems: "center",
+        }}>
+          <label
+            htmlFor="logoOptions"
+            style={{
+              width: "120px",
+              fontWeight: "bold",
+              fontSize: "14px",
+              color: "#333",
+            }}
+          > Logo Options</label>
+          <select
+            id="logoOption"
+            name="logoOption"
+            onChange={handleInputChange}
+            style={{
+              flex: 1,
+              padding: "10px",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+              fontSize: "14px",
+            }}>
+
+            <option value={logoVariants["iTrucking_1"]}> iTrucking 1</option>
+            <option value={logoVariants["iTrucking_2"]}> iTrucking 2</option>
+            <option value={logoVariants["iTrucking_services"]}> iTrucking Services 1</option>
+            <option value={logoVariants["iTrucking_round"]}> iTrucking Services round</option>
+            <option value={logoVariants["iTrucking_round_2"]}> iTrucking Services round 2</option>
+          </select>
+        </div>
+
       </form>
       <h2 style={{ textAlign: "center" }}>Preview</h2>
       <div
