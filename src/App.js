@@ -32,7 +32,7 @@ const App = () => {
     buttonText: "Search Trucks",
     companyName: "iTrucking Services Inc",
     extension: "202",
-    logoSize: 140
+    logoSize: 180
   });
 
   const downloadFile = (content, fileName, contentType) => {
@@ -65,8 +65,8 @@ const App = () => {
     "iTrucking_1": "https://drive.google.com/file/d/1CvZXw8bxKDV15nRmAfG7jmzdVhSi-tg6/view",
     "iTrucking_2": "https://drive.google.com/file/d/17jJiiuNXiMza7AUlbRdtvhns3kpcqpxc/view?usp=sharing",
     "iTrucking_services": "https://drive.google.com/file/d/1XNXuyIdG0OdqjM_wIwFl5RZM4Zu_lM_5/view?usp=sharing",
-    "iTrucking_round": "https://drive.google.com/file/d/12HZU6cvTdab38cstAxL8q0kltPkgVa1I/view?usp=sharing",
-    "iTrucking_round_2" : "https://drive.google.com/file/d/12Asd3UK009AgKT3O27PwJ3xHI7KAEMrf/view?usp=sharing"
+    "iTrucking_round": "https://drive.google.com/file/d/12Asd3UK009AgKT3O27PwJ3xHI7KAEMrf/view?usp=sharing",
+    "iTrucking_round_2" : "https://drive.google.com/file/d/12HZU6cvTdab38cstAxL8q0kltPkgVa1I/view?usp=sharing"
   }
   /*      <option value="iTrucking_1"> iTrucking 1</option>
           <option value="iTrucking_2"> iTrucking 2</option>
@@ -104,9 +104,9 @@ const App = () => {
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                       <tbody>
                         <tr>
-                          <td valign="middle" align="center" style="padding:0 15px 0 0; border-collapse:collapse;">
+                          <td valign="middle" align="center" style="padding:0 10px 0 0; border-collapse:collapse;">
                             <a href="https://www.itruckingservices.org/" id="layout_link">
-                              <img class="layout_logo" src="${convertGoogleDriveLink(logoOption || image)}" width="${logoSize}">
+                              <img class="layout_logo" src="${convertGoogleDriveLink(logoOption || image)}" width="${logoOption === 'https://drive.google.com/file/d/17jJiiuNXiMza7AUlbRdtvhns3kpcqpxc/view?usp=sharing' ? 200: logoSize} ">
                             </a>
                           </td>
                           <td valign="top" align="left" class="layout_divider" style="border-left-width:1px; border-left-color:#000000; border-left-style: solid; padding:0 0 0 15px; border-collapse:collapse;">
