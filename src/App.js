@@ -21,18 +21,25 @@ const App = () => {
   const [formData, setFormData] = useState({
     name: "Oleg Bogdan",
     department: "Fuel Management",
-    phone: "(916) 269-4606",
+    companyName: "iTrucking Services Inc",
+    additionalText: "",
+    mainPhone: "(916) 269-4606",
+    mainPhonePrefix: "Main:",
+    phone: "(916) 000-0000",
+    phonePrefix: "Cell:",
     email: "oleg.bogdan@itrucking.org",
     website: "https://itruckingservices.org",
     linkedin: "https://www.linkedin.com/company/itrucking-services-inc/",
     facebook: "https://www.facebook.com/itruckingservicesinc/",
     instagram: "https://instagram.com/itrucking.inc/",
     image: "https://drive.google.com/file/d/1CvZXw8bxKDV15nRmAfG7jmzdVhSi-tg6/view?usp=sharing", //"https://app.customesignature.com/upload/signature/complete/696/696.gif",
+    mc: '',
+    mcLink: 'https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=USDOT&query_string=2861265',
     customBtnLink: "https://itruckingservices.org/index.php?page=home#calendar",
     buttonText: "Search Trucks",
-    companyName: "iTrucking Services Inc",
     extension: "202",
-    logoSize: 180
+    logoSize: 180,
+    announcement: ""
   });
 
   const downloadFile = (content, fileName, contentType) => {
@@ -77,6 +84,9 @@ const App = () => {
     const {
       name,
       department,
+      phonePrefix,
+      mainPhonePrefix,
+      mainPhone,
       phone,
       email,
       website,
@@ -89,7 +99,11 @@ const App = () => {
       companyName,
       extension,
       logoSize,
-      logoOption
+      logoOption,
+      mc,
+      mcLink,
+      announcement,
+      additionalText
     } = formData;
 
     return `
@@ -140,9 +154,11 @@ const App = () => {
                                   </tr>
                                 ` : ''}
                                 ${companyName ? `<tr><td><span class="layout_company" style="font-weight:bold; font-style:normal; color:#000000; font-size:14px;">${companyName}</span></td></tr>` : ''}
-                                ${phone ? `<tr><td><a href="tel:${phone}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:unset;">${phone}</a></td></tr>` : ''}
-                                ${extension ? `<tr><td><span style="font-weight:bold; font-style:normal; color:#000000; font-size:12px;">Ext:</span> <a href="tel:${extension}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:unset;">${extension}</a></td></tr>` : ''}
+                                ${additionalText ? `<tr><td><div style="margin-bottom: 5px;"><span class="layout_jobtitle" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px;">${additionalText}</span></div></td></tr>` : ''}
+                                ${mainPhone ? `<tr><td><a href="tel:${mainPhone}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:unset;"> <span class="layout_company" style="font-weight:bold; font-style:normal; color:#000000; font-size:12px;">${mainPhonePrefix}</span> ${mainPhone} ${extension ? ` Ext ${extension}` : '' }</a></td></tr>` : ''}
+                                ${phone ? `<tr><td><a href="tel:${phone}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:unset;"> <span class="layout_company" style="font-weight:bold; font-style:normal; color:#000000; font-size:12px;">${phonePrefix}</span>  ${phone}</a></td></tr>` : ''}
                                 ${email ? `<tr><td><a href="mailto:${email}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:unset;">${email}</a></td></tr>` : ''}
+                                ${mc ? `<tr><td><a href="${mcLink}" style="font-weight:bold; font-style:normal; color:#000000; font-size:12px; text-decoration:underline;">MC: ${mc}</a></td></tr>` : ''}
                                 <tr>
                                   <td style="padding:10px 0 0 0; border-collapse:collapse;">
                                     <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
@@ -167,7 +183,11 @@ const App = () => {
                         </tr>
                       </tbody>
                     </table>
-                  </td>
+${announcement ? `
+<div style="max-width:400px;margin-top: 10px;">
+  <span style="padding: 2px 0px 0px; border: 0px; line-height:15px; max-width: 0px; word-break: break-word; font-size:10px;">${announcement}</span>
+</div>
+` : ''}           </td>
                 </tr>
               </tbody>
             </table>
@@ -255,7 +275,7 @@ const App = () => {
           <div
             key={key}
             style={{
-              marginBottom: "15px",
+              marginBottom: "10px",
               display: "flex",
               alignItems: "center",
             }}
@@ -263,14 +283,31 @@ const App = () => {
             <label
               htmlFor={key}
               style={{
-                width: "120px",
+                width: "125px",
                 fontWeight: "bold",
-                fontSize: "14px",
+                fontSize: "12px",
                 color: "#333",
               }}
             >
               {key.charAt(0).toUpperCase() + key.slice(1)}:
             </label>
+            {key === "announcement" ? 
+               <textarea
+              id={key}
+              type="text"
+              name={key}
+              value={value}
+              onChange={handleInputChange}
+              style={{
+                flex: 1,
+                padding: "8px",
+                border: "1px solid #ccc",
+                borderRadius: "5px",
+                fontSize: "12px",
+                height: "60px",
+              }}
+            />
+              :
             <input
               id={key}
               type="text"
@@ -279,25 +316,25 @@ const App = () => {
               onChange={handleInputChange}
               style={{
                 flex: 1,
-                padding: "10px",
+                padding: "8px",
                 border: "1px solid #ccc",
                 borderRadius: "5px",
-                fontSize: "14px",
+                fontSize: "12px",
               }}
-            />
+            />}
           </div>
         ))}
         <div style={{
-          marginBottom: "15px",
+          marginBottom: "10px",
           display: "flex",
           alignItems: "center",
         }}>
           <label
             htmlFor="logoOptions"
             style={{
-              width: "120px",
+              width: "125px",
               fontWeight: "bold",
-              fontSize: "14px",
+              fontSize: "12px",
               color: "#333",
             }}
           > Logo Options</label>
@@ -307,10 +344,10 @@ const App = () => {
             onChange={handleInputChange}
             style={{
               flex: 1,
-              padding: "10px",
+              padding: "8px",
               border: "1px solid #ccc",
               borderRadius: "5px",
-              fontSize: "14px",
+              fontSize: "12px",
             }}>
 
             <option value={logoVariants["iTrucking_1"]}> iTrucking 1</option>
@@ -326,14 +363,14 @@ const App = () => {
       <div
         style={{
           border: "1px solid #ccc",
-          padding: "20px",
+          padding: "15px",
           borderRadius: "10px",
           backgroundColor: "#fff",
         }}
         dangerouslySetInnerHTML={{ __html: renderSignature() }}
       ></div>
 
-      <div style={{ marginTop: "20px", textAlign: "center" }}>
+      <div style={{ marginTop: "15px", textAlign: "center" }}>
         <button
           onClick={() => downloadFile(renderSignature(), "signature.html", "text/html")}
           style={{
@@ -344,7 +381,7 @@ const App = () => {
             border: "none",
             borderRadius: "5px",
             cursor: "pointer",
-            fontSize: "14px",
+            fontSize: "12px",
           }}
         >
           Download as HTML
