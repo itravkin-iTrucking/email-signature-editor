@@ -189,7 +189,7 @@ const App = () => {
                                 </tr>
                               ${verifiedCarrier && verifiedCarrier !== 'Disable' ? 
                                   `<td valign="top" align="left" style="padding:0 10px 0 0; border-collapse:collapse;">
-                                    <a href='http://VerifiedVarrier.com'><img src=${convertGoogleDriveLink(verifiedCarrier)} width='200' height='120' style='padding-top: 10px'> </a>` : ''}
+                                    <img src=${convertGoogleDriveLink(verifiedCarrier)} width='145' >` : ''}
                               </tbody>
                             </table>
 
