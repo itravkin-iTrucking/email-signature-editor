@@ -6,7 +6,7 @@ const App = () => {
   const [error, setError] = useState("");
 
   const PASSWORD = "958715"; // Hardcoded password
-
+  const verifiedCarrierPicture = "https://drive.google.com/file/d/10aVqtKPkDQah_G9ektmkKmQEIql-FVgI/view?usp=sharing";
   // Handle login
   const handleLogin = (e) => {
     e.preventDefault();
@@ -39,7 +39,9 @@ const App = () => {
     buttonText: "Search Trucks",
     extension: "202",
     logoSize: 180,
-    announcement: ""
+    logoLink: "https://itruckingservices.org",
+    announcement: "",
+    verifiedCarrierPicture: verifiedCarrierPicture
   });
 
   const downloadFile = (content, fileName, contentType) => {
@@ -100,10 +102,12 @@ const App = () => {
       extension,
       logoSize,
       logoOption,
+      logoLink,
       mc,
       mcLink,
       announcement,
-      additionalText
+      additionalText,
+      verifiedCarrier
     } = formData;
 
     return `
@@ -119,10 +123,13 @@ const App = () => {
                       <tbody>
                         <tr>
                           <td valign="middle" align="center" style="padding:0 10px 0 0; border-collapse:collapse;">
-                            <a href="https://www.itruckingservices.org/" id="layout_link">
+                          ${logoLink ? `
+                            <a href="${logoLink}" id="layout_link">
                               <img class="layout_logo" src="${convertGoogleDriveLink(logoOption || image)}" width="${logoOption === 'https://drive.google.com/file/d/17jJiiuNXiMza7AUlbRdtvhns3kpcqpxc/view?usp=sharing' ? 200: logoOption ===  'https://drive.google.com/file/d/1xKGTkJFzsBVuGbMjc3YI5SiW6d0vxCil/view?usp=sharing' ? 140 : logoSize} ">
-                            </a>
+                            </a>` :`<img class="layout_logo" src="${convertGoogleDriveLink(logoOption || image)}" width="${logoOption === 'https://drive.google.com/file/d/17jJiiuNXiMza7AUlbRdtvhns3kpcqpxc/view?usp=sharing' ? 200: logoOption ===  'https://drive.google.com/file/d/1xKGTkJFzsBVuGbMjc3YI5SiW6d0vxCil/view?usp=sharing' ? 140 : logoSize} ">` }
+
                           </td>
+
                           <td valign="top" align="left" class="layout_divider" style="border-left-width:1px; border-left-color:#000000; border-left-style: solid; padding:0 0 0 15px; border-collapse:collapse;">
                             <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
                               <tbody>
@@ -159,6 +166,7 @@ const App = () => {
                                 ${phone ? `<tr><td><a href="tel:${phone}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:unset;"> <span class="layout_company" style="font-weight:bold; font-style:normal; color:#000000; font-size:12px;">${phonePrefix}</span>  ${phone}</a></td></tr>` : ''}
                                 ${email ? `<tr><td><a href="mailto:${email}" style="font-weight:normal; font-style:normal; color:#000000; font-size:12px; text-decoration:unset;">${email}</a></td></tr>` : ''}
                                 ${mc ? `<tr><td><a href="${mcLink}" style="font-weight:bold; font-style:normal; color:#000000; font-size:12px; text-decoration:underline;">MC: ${mc}</a></td></tr>` : ''}
+
                                 <tr>
                                   <td style="padding:10px 0 0 0; border-collapse:collapse;">
                                     <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
@@ -173,21 +181,33 @@ const App = () => {
 <span style="font-weight:bold;line-height:22px">${buttonText}</span></div>
                           </a></td>` : ''}
                                         </tr>
+
                                       </tbody>
+
+  
                                     </table>
                                   </td>
                                 </tr>
+                              ${verifiedCarrier && verifiedCarrier !== 'Disable' ? 
+                                  `<td valign="top" align="left" style="padding:0 10px 0 0; border-collapse:collapse;">
+                                    <a href='http://VerifiedVarrier.com'><img src=${convertGoogleDriveLink(verifiedCarrier)} width='190' height='110' style='padding-top: 10px'> </a>` : ''}
                               </tbody>
                             </table>
+
                           </td>
                         </tr>
+${announcement ? `
+<tr>
+  <td colspan="2" style="padding-top:10px;">
+    <div style="font-size:9px; font-style:normal; font-weight:normal; color:#000000; max-width:400px;">
+      ${announcement}
+    </div>
+  </td>
+</tr>
+` : ''}  
                       </tbody>
                     </table>
-${announcement ? `
-<div style="max-width:400px;margin-top: 10px;">
-  <span style="padding: 2px 0px 0px; border: 0px; line-height:15px; max-width: 0px; word-break: break-word; font-size:10px;">${announcement}</span>
-</div>
-` : ''}           </td>
+                   </td>
                 </tr>
               </tbody>
             </table>
@@ -357,6 +377,38 @@ ${announcement ? `
             <option value={logoVariants["iTrucking_simple"]}> iTrucking Simple Logo</option>
           </select>
         </div>
+
+ <div style={{
+          marginBottom: "10px",
+          display: "flex",
+          alignItems: "center",
+        }}>
+          <label
+            htmlFor="verifiedCarrierPicture"
+            style={{
+              width: "125px",
+              fontWeight: "bold",
+              fontSize: "12px",
+              color: "#333",
+            }}
+          >Enable verified carrier picture</label>
+          <select
+            id="verifiedCarrierPicture"
+            name="verifiedCarrier"
+            onChange={handleInputChange}
+            style={{
+              flex: 1,
+              padding: "8px",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+              fontSize: "12px",
+            }}>
+
+            <option value={null}> Disable </option>
+            <option value={verifiedCarrierPicture}> Enable</option>
+          </select>
+        </div>
+
 
       </form>
       <h2 style={{ textAlign: "center" }}>Preview</h2>
