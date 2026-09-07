@@ -32,7 +32,7 @@ const App = () => {
     linkedin: "https://www.linkedin.com/company/itrucking-services-inc/",
     facebook: "https://www.facebook.com/itruckingservicesinc/",
     instagram: "https://instagram.com/itrucking.inc/",
-    image: "https://drive.google.com/file/d/1CvZXw8bxKDV15nRmAfG7jmzdVhSi-tg6/view?usp=sharing", //"https://app.customesignature.com/upload/signature/complete/696/696.gif",
+    image: "https://drive.google.com/file/d/1UtqXInIVfrVABQoLZOs5KtDYQm6RN9be/view?usp=sharing", //"https://app.customesignature.com/upload/signature/complete/696/696.gif",
     mc: '',
     mcLink: 'https://safer.fmcsa.dot.gov/query.asp?searchtype=ANY&query_type=queryCarrierSnapshot&query_param=USDOT&query_string=2861265',
     customBtnLink: "https://itruckingservices.org/index.php?page=home#calendar",
