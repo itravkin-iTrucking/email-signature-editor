@@ -70,6 +70,7 @@ const App = () => {
   };
 
   const logoVariants = {
+    "iTrucking_solutions" : "https://drive.google.com/file/d/1UtqXInIVfrVABQoLZOs5KtDYQm6RN9be/view?usp=sharing",
     "iTrucking_1": "https://drive.google.com/file/d/1CvZXw8bxKDV15nRmAfG7jmzdVhSi-tg6/view",
     "iTrucking_2": "https://drive.google.com/file/d/17jJiiuNXiMza7AUlbRdtvhns3kpcqpxc/view?usp=sharing",
     "iTrucking_services": "https://drive.google.com/file/d/1XNXuyIdG0OdqjM_wIwFl5RZM4Zu_lM_5/view?usp=sharing",
