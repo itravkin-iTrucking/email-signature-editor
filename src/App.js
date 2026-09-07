@@ -370,6 +370,8 @@ ${announcement ? `
               fontSize: "12px",
             }}>
 
+
+            <option value={logoVariants["iTrucking_solutions"]}> iTrucking Solutions new logo</option>
             <option value={logoVariants["iTrucking_1"]}> iTrucking 1</option>
             <option value={logoVariants["iTrucking_2"]}> iTrucking 2</option>
             <option value={logoVariants["iTrucking_services"]}> iTrucking Services 1</option>
